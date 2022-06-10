@@ -27,4 +27,10 @@ export default {
     56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
     97: '0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7',
   },
+  // delegate farm kontratları
+  delegate : {
+    56 : '0xaf0400156c48672c5eec011114209fe05e3e7c28',
+    97 : '0xFC3F8e9AbADbB74Edf785a979A23a83679D0598D',
+  },
 }
+  

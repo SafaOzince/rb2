@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
 import cakeABI from 'config/abi/cake.json'
+import spABI from 'config/abi/sp.json'
 import { getContract } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
 import { getCakeAddress } from 'utils/addressHelpers'
@@ -23,6 +24,24 @@ const useTokenBalance = (tokenAddress: string) => {
       fetchBalance()
     }
   }, [account, ethereum, tokenAddress, fastRefresh])
+
+  return balance
+}
+export const useCustomTokenBalance = (tokenAddress: string,account:string) => {
+  const [balance, setBalance] = useState(new BigNumber(0))
+  const { fastRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const spContract = getContract(spABI, tokenAddress)
+      const bal = await spContract.methods.balanceOf(account).call()
+      setBalance(new BigNumber(bal))
+    }
+
+
+      fetchBalance()
+
+  }, [account,tokenAddress, fastRefresh])
 
   return balance
 }

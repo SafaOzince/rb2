@@ -19,6 +19,21 @@ export interface Ifo {
   releaseBlockNumber: number
 }
 
+export enum DelegateNetwork {
+  'STEEM' = 'STEEM'
+}
+
+export interface DelegateFarmConfig {
+  pid? : number
+  tokenSymbol? : string
+  delegateToken? : DelegateNetwork
+  isActive? : boolean
+  lpSymbol? : string
+  depositFee? : number
+  delegateAddress? : string
+  multiplier? : string
+}
+
 export enum QuoteToken {
   'BNB' = 'BNB',
   'CAKE' = 'CAKE',
@@ -49,6 +64,10 @@ export interface FarmConfig {
   quoteTokenAdresses: Address
   multiplier?: string
   isTokenOnly?: boolean
+  delegate?: boolean
+  delegateAddress?: string
+  delegateToken?: string
+  depositFee?:string
   isCommunity?: boolean
   risk: number
   dual?: {

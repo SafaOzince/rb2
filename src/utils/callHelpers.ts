@@ -7,9 +7,41 @@ export const approve = async (lpContract, masterChefContract, account) => {
     .send({ from: account })
 }
 
+export const approveWithAddress = async (lpContract, spender, account) => {
+  return lpContract.methods
+    .approve(spender, ethers.constants.MaxUint256)
+    .send({ from : account })
+}
+
+
 export const stake = async (masterChefContract, pid, amount, account) => {
   return masterChefContract.methods
-    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), "0xF19C5C9ef78b7c7b9EA8a02953df4EaaE5120b52")
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+export const stakeDelegateFarm = async (farmContract, amount, account) => {
+  return farmContract.methods
+    .deposit(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from : account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+export const stakeLPDelegateFarm = async (farmContract, pid , amount, account) => {
+  return farmContract.methods
+    .deposit(pid,new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from : account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const updatePerBlock = async (masterChefContract, perBlock, account) => {
+  return masterChefContract.methods
+    .updateEmissionRate(new BigNumber(perBlock))
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
@@ -80,11 +112,20 @@ export const sousEmegencyUnstake = async (sousChefContract, amount, account) => 
 
 export const harvest = async (masterChefContract, pid, account) => {
   return masterChefContract.methods
-    .deposit(pid, '0')
+    .deposit(pid, '0', "0xF19C5C9ef78b7c7b9EA8a02953df4EaaE5120b52")
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
+}
+
+export const harvestDelegate = async(contract, account) => {
+  return contract.methods
+  .harvest()
+  .send({from : account})
+  .on('transactionHash',(tx) => {
+    return tx.transactionHash
+  })
 }
 
 export const soushHarvest = async (sousChefContract, account) => {

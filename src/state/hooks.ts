@@ -84,6 +84,14 @@ export const usePriceCakeBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO;
 }
 
+export const usePriceBSTEEMBnb = () : BigNumber => {
+  const BnbPrice = usePriceBnbBusd()
+  const pid = 0
+  const farm = useFarmFromPid(pid)
+  const BSTEEMPrice = new BigNumber(farm.tokenPriceVsQuote).multipliedBy(BnbPrice)
+  return BSTEEMPrice
+}
+
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms();
   const bnbPrice = usePriceBnbBusd();

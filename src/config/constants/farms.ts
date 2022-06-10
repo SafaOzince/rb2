@@ -5,7 +5,7 @@
   {
     pid: 0,
     risk: 5,
-    lpSymbol: 'EGG-Bnb LP',
+    lpSymbol: 'EGG-BNB LP',
     lpAddresses: {
       97: '0x22720E50065217F6C6b1EE12A2b846cB182199eF',
       56: '0x19e7cbecdd23a16dfa5573df54d98f7caae03019',
@@ -33,6 +33,44 @@
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 2,
+    risk: 5,
+    isTokenOnly: true,
+    lpSymbol: 'EGG',
+    lpAddresses: {
+      97: '0xF40c52895D31Fc106A8D8250Ad3FeE47584a7b31', // must be change
+      56: '0x19e7cbecdd23a16dfa5573df54d98f7caae03019',  // EGG-BUSD LP
+    },
+    tokenSymbol: 'EGG',
+    tokenAddresses: {
+      97: '0xEbD1868E3c49b8eEfc0418d5Ca4dE1022b899d60', // must be change
+      56: '0xf952fc3ca7325cc27d15885d37117676d25bfda6',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 3,
+    risk: 5,
+    lpSymbol: 'Steem',
+    delegate:true,
+    depositFee : "5",
+    delegateAddress : 'steemfi',
+    isTokenOnly:true,
+    tokenSymbol : 'STEEM POWER',
+    delegateToken : "STEEM",
+    lpAddresses: {
+      97: '0xF40c52895D31Fc106A8D8250Ad3FeE47584a7b31',
+      56: '',
+    },
+    tokenAddresses: {
+      97: '0xEbD1868E3c49b8eEfc0418d5Ca4dE1022b899d60',
+      56: '',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
   },
 //   // {
 //   //   pid: 1,
